@@ -1,0 +1,31 @@
+{ lib, config, ... }: {
+    options = {
+        ssh.enable = lib.mkEnableOption "enables ssh";
+    };
+
+    config = lib.mkIf config.ssh.enable {
+        programs.ssh = {
+            enable = true;
+            extraConfig = ''
+                Host github
+                    HostName github.com 
+                    User git 
+                    IdentityFile ~/.ssh/github
+
+                Host swan
+                    HostName swan.unl.edu 
+                    User c4patino 
+                    ControlMaster auto 
+                    ControlPath /tmp/ssh_%r@%h:%p 
+                    ControlPersist 2h
+
+                Host cse 
+                    HostName cse.unl.edu 
+                    User cpatino 
+                    ControlMaster auto 
+                    ControlPath /tmp/ssh_%r@%h:%p 
+                    ControlPersist 2h
+            '';
+        };
+    };
+}

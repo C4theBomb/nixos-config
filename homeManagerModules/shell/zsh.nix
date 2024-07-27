@@ -1,0 +1,40 @@
+{ pkgs, lib, config, ... }: {
+    options = {
+        zsh.enable = lib.mkEnableOption "enables zsh";
+    };
+
+    config = lib.mkIf config.zsh.enable {
+        home.packages = with pkgs; [
+            zsh-powerlevel10k
+        ];
+
+        programs.zsh = {
+            enable = true;
+            enableCompletion = true;
+            autosuggestion.enable = true;
+            syntaxHighlighting.enable = true;
+
+            initExtra = "source ~/.p10k.zsh";
+
+            history = {
+                size = 10000;
+                path = "${config.xdg.dataHome}/zsh/history";
+            };
+
+            oh-my-zsh = {
+                enable = true;
+                plugins = [ "sudo" "git" "gitignore" "web-search" "copypath" "jsontools" ];
+                theme = "robbyrussell";
+            };
+
+            plugins = [
+                {
+                    name = "powerlevel10k";
+                    src = "${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/";
+                    file = "powerlevel10k.zsh-theme";
+                }
+            ];
+        };
+    };
+}
+
