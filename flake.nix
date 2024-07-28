@@ -11,9 +11,13 @@
             url = "git+https://github.com/C4theBomb/neovim.git";
             flake = false;
         };
+        dotfiles = {
+            url = "git+https://github.com/C4theBomb/dotfiles.git";
+            flake = false;
+        };
     };
 
-    outputs = { self, nixpkgs, home-manager, neovim-config }@inputs: 
+    outputs = { self, nixpkgs, home-manager, neovim-config, dotfiles }@inputs: 
     let
         system = "x86_64-linux";
         pkgs = nixpkgs.legacyPackages.${system};
@@ -21,10 +25,18 @@
     {
         nixosConfigurations = {
             c4-desktop = nixpkgs.lib.nixosSystem {
-                specialArgs = { inherit system; };
+                specialArgs = { inherit inputs; };
 
                 modules = [
-                    ./desktop/configuration.nix
+                    ./hosts/desktop/configuration.nix
+                    ./nixosModules
+                ];
+            };
+            iso-graphical = nixpkgs.lib.nixosSystem {
+                specialArgs = { inherit inputs; };
+
+                modules = [
+                    ./hosts/iso-graphical/configuration.nix
                     ./nixosModules
                 ];
             };
@@ -32,9 +44,10 @@
 
         homeConfigurations."c4patino" = home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
+            extraSpecialArgs = { inherit inputs; };
 
             modules = [ 
-                ./home.nix 
+                ./hosts/home.nix 
                 ./homeManagerModules
             ];
         };

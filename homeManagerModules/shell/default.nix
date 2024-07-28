@@ -6,6 +6,7 @@
         ./zsh.nix
         ./gh.nix
         ./kitty.nix
+        ./leetcode.nix
     ];
 
     git.enable = lib.mkDefault true;

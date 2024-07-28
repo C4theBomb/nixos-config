@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }: {
+{ pkgs, lib, config, inputs, ... }: {
     options = {
         leetcode.enable = lib.mkEnableOption "enables leetcode";
     };
@@ -7,7 +7,7 @@
         home.packages = with pkgs; [ leetcode-cli ];
 
         home.file = {
-            ".leetcode/leetcode.toml".source = dotfiles/leetcode.toml;
+            ".leetcode/leetcode.toml".source = inputs.dotfiles + "leetcode.toml";
         };
     };
 }

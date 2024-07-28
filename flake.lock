@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "dotfiles": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1722123869,
+        "narHash": "sha256-xrt2ydWsoHxHhTrC2bDkl19XA9jAZCKEeUvkHRixKBk=",
+        "ref": "refs/heads/main",
+        "rev": "cdb6592e3187a2c4930cff789983b0fd9d2a0668",
+        "revCount": 24,
+        "type": "git",
+        "url": "https://github.com/C4theBomb/dotfiles.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://github.com/C4theBomb/dotfiles.git"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -54,6 +70,7 @@
     },
     "root": {
       "inputs": {
+        "dotfiles": "dotfiles",
         "home-manager": "home-manager",
         "neovim-config": "neovim-config",
         "nixpkgs": "nixpkgs"

@@ -1,9 +1,9 @@
 { lib, ... }: {
     imports = [
         ./docker.nix
-        ./virtualization
+        ./virtualbox.nix
     ];
 
     docker.enable = lib.mkDefault true;
-    virtualization.enable = lib.mkDefault true;
+    virtualbox.enable = lib.mkDefault true;
 }
