@@ -22,7 +22,7 @@
         };
     };
 
-    outputs = { self, nixpkgs, home-manager, neovim-config, dotfiles }@inputs: 
+    outputs = { self, nixpkgs, home-manager, neovim-config, dotfiles, hyprland, hyprland-plugins }@inputs: 
     let
         system = "x86_64-linux";
         pkgs = nixpkgs.legacyPackages.${system};

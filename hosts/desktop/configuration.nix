@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 {
     imports = [
         ./hardware-configuration.nix
@@ -82,7 +82,6 @@
     environment.systemPackages = with pkgs; [ home-manager ];
     programs.zsh.enable = true;
 
-    programs.hyprland.enable = true;
     programs.hyprland = {
         enable = true;
         package = inputs.hyprland.packages."${pkgs.system}".hyprland;

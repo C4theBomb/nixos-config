@@ -13,14 +13,15 @@
 
     wayland.windowManager.hyprland = {
         enable = true;
-        settings = {
-            plugins = [
-                inputs.hyprland-plugins.packages."${pkgs.system}".borders-plus-plus
-            ];
 
+        plugins = [
+            inputs.hyprland-plugins.packages."${pkgs.system}".borders-plus-plus
+        ];
+
+        settings = {
             settings = {
                 "plugin:borders-plus-plus" = {
-                    add_borders = 1
+                    add_borders = 1;
 
                     "col.border_1" = "rgb(ffffff)";
                     "col.border_2" = "rgb(2222ff)";
@@ -31,6 +32,7 @@
                     natural_rounding = "yes";
                 };
             };
+
         };
     };
 }
