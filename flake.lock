@@ -264,11 +264,11 @@
     "neovim-config": {
       "flake": false,
       "locked": {
-        "lastModified": 1722135906,
-        "narHash": "sha256-cKmgAQNZCBbc3BBotWeY8FSUu8SZ8ltbWANYbTcR3EQ=",
+        "lastModified": 1722178829,
+        "narHash": "sha256-3f/jAz0jk+qyn7fOMXi2z1+uUOiNxOWa8K2G0UbGbvI=",
         "ref": "refs/heads/main",
-        "rev": "22a3062a681cddeb2ee27c97319cfd38e8031811",
-        "revCount": 4,
+        "rev": "1f76937ebbe2737d82e421f4a41ca65ff503e5b7",
+        "revCount": 5,
         "type": "git",
         "url": "https://github.com/C4theBomb/neovim.git"
       },
