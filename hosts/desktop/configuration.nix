@@ -45,8 +45,8 @@
     services.xserver.enable = true;
 
     # Enable the GNOME Desktop Environment.
-    services.xserver.displayManager.gdm.enable = true;
-    services.xserver.desktopManager.gnome.enable = true;
+    # services.xserver.displayManager.gdm.enable = true;
+    # services.xserver.desktopManager.gnome.enable = true;
 
     # Configure keymap in X11
     services.xserver.xkb = {
@@ -82,7 +82,33 @@
     # List packages installed in system profile. To search, run:
     environment.systemPackages = with pkgs; [ 
         home-manager 
+
+        (waybar.overrideAttrs (oldAttrs: { mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ]; }))
+        dunst
+        libnotify
+        swww
+        kitty
+        rofi-wayland
+
+        networkmanagerapplet
     ];
+
+    
+    programs.hyprland = {
+        enable = true;
+	xwayland.enable = true;
+    };
+
+    environment.sessionVariables = {
+        WLR_NO_HARDWARE_CURSORS = "1";
+	NIXOS_OZONE_WL = "1";
+    };
+
+    xdg.portal = {
+        enable = true;
+        extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+    };
+
     programs.zsh.enable = true;
 
     system.stateVersion = "24.05";
