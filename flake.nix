@@ -8,6 +8,7 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
         hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+        hyprpaper.url = "github:hyprwm/hyprpaper";
         hyprland-plugins = {
             url = "github:hyprwm/hyprland-plugins";
             inputs.hyprland.follows = "hyprland";
@@ -22,7 +23,7 @@
         };
     };
 
-    outputs = { self, nixpkgs, home-manager, neovim-config, dotfiles, hyprland, hyprland-plugins }@inputs: 
+    outputs = { self, nixpkgs, home-manager, neovim-config, dotfiles, hyprland, hyprpaper, hyprland-plugins }@inputs: 
     let
         system = "x86_64-linux";
         pkgs = nixpkgs.legacyPackages.${system};
