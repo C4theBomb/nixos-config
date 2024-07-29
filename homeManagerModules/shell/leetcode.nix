@@ -7,7 +7,7 @@
         home.packages = with pkgs; [ leetcode-cli ];
 
         home.file = {
-            ".leetcode/leetcode.toml".source = inputs.dotfiles + "leetcode.toml";
+            ".leetcode/leetcode.toml".source = inputs.dotfiles + "/leetcode.toml";
         };
     };
 }

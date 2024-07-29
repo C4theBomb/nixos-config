@@ -36,11 +36,11 @@
     "dotfiles": {
       "flake": false,
       "locked": {
-        "lastModified": 1722123869,
-        "narHash": "sha256-xrt2ydWsoHxHhTrC2bDkl19XA9jAZCKEeUvkHRixKBk=",
+        "lastModified": 1722219110,
+        "narHash": "sha256-YkWDTSUUvpjcqONYt4+OjPpNO48ccDESErXdAJjQhqQ=",
         "ref": "refs/heads/main",
-        "rev": "cdb6592e3187a2c4930cff789983b0fd9d2a0668",
-        "revCount": 24,
+        "rev": "fee4f7fddbdfbefb510f69d268652f4d413ffed6",
+        "revCount": 25,
         "type": "git",
         "url": "https://github.com/C4theBomb/dotfiles.git"
       },

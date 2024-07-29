@@ -10,7 +10,6 @@
                 Host github
                     HostName github.com 
                     User git 
-                    IdentityFile ~/.ssh/github
 
                 Host swan
                     HostName swan.unl.edu 
