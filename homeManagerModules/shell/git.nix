@@ -11,7 +11,7 @@
             userEmail = "c4patino@gmail.com";
 
             extraConfig = {
-                user.signingkey = "~/.ssh/github.pub";
+                user.signingkey = "~/.ssh/id_ed25519.pub";
                 init.defaultBranch = "main"; 
                 pull.rebase = true; 
                 fetch.prune = true; 
