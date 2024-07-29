@@ -3,9 +3,12 @@
         hyprland.enable = lib.mkEnableOption "enables hyprland";
     };
 
+    imports = [
+
+    ];
 
     config = lib.mkIf config.hyprland.enable {
-        environment.systemPackages = with pkgs; [
+        home.packages = with pkgs; [
             kitty
 
             (waybar.overrideAttrs (oldAttrs: { mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ]; }))
@@ -13,37 +16,102 @@
             dunst
             libnotify
 
-            swww
             rofi-wayland
+            anyrun
+
+            swaybg
+            variety
+
+            wireplumber
+
+            polkit
+
+            hyprpicker
+
+            wl-clipboard
+            cliphist
         ];
+        
+        home.file = {
+            ".desktops/" = {
+                source = inputs.dotfiles + "/desktops";
+                recursive = true;
+            };
+        };
 
         wayland.windowManager.hyprland = {
             enable = true;
+            xwayland.enable = true;
+
+            plugins = with pkgs.hyprlandPlugins; [
+                hyprexpo
+            ];
 
             settings = {
-                "$mod" = "SUPER";
+                "$mainMod" = "SUPER";
 
                 "$terminal" = "kitty";
-                "$menu" = "rofi --show drun";
+                "$menu" = "rofi -show drun -show-icons";
+
+                plugin = {
+                    hyprexpo = {
+                        columns = 3;
+                        gap_size = 5;
+                        bg_col = "rgb(111111)";
+                        workspace_method = "center current"; # [center/first] [workspace] e.g. first 1 or center m+1
+
+                        enable_gesture = true; # laptop touchpad
+                        gesture_fingers = 3;  # 3 or 4
+                        gesture_distance = 300; # how far is the "max"
+                        gesture_positive = true; # positive = swipe down. Negative = swipe up.
+                    };
+                };
 
                 exec-once = [
                     "$terminal"
                     "dunst &"
-                    "hyprpaper &"
+
+                    "swaybg &"
+                    "variety &"
+                    
+                    "waybar &"
+
+                    "wireplumber"
+
+                    "wl-paste --type text --watch cliphist store"
+                    "wl-paste --type image --watch cliphist store"
+
+                    "dbus-update-activation-environment --systmd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+                    "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
                 ];
 
                 env = [
+                    "GDK_BACKEND,wayland,x11,*"
+                    "QT_QPA_PlATFORM,wayland;xcb"
+                    "SDLVIDEODRIVER,wayland"
+                    "CLUTTER_BACKEND,wayland"
+                    "XDG_CURRENT_DESKTOP,Hyprland"
+                    "XDG_SESSION_TYPE,wayland"
+                    "XDG_SESSION_DESKTOP,Hyprland"
+
+                    "QT_AUTO_SCREEN_SCALE_FACTOR,1"
+                    "QT_QPA_PLATOFMR,wayland;xcb"
+                    "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
+                    "QT_QPA_PLATFORMTHEME,qt5ct"
+
                     "XCURSOR_SIZE,24"
                     "HYPRCURSOR_SIZE,24"
-                    "LIBVA_DRIVER_NAME,nvidia"
-                    "XDG_SESSION_TYPE,wayland"
+
                     "GBM_BACKEND,nvidia-drm"
                     "__GLX_VENDOR_LIBRARY_NAME,nvidia"
+                    "LIBVA_DRIVER_NAME,nvidia"
                 ];
 
-                cursor = {
-                    no_hardware_cursors = true;
-                }
+                monitor = [
+                    "DP-2, 2560x1440@120, 0x0, 1"
+                    "DP-1, 2560x1440@120, 2560x0, 1"
+                    ", preferred, auto, auto"
+                ];
 
                 general = {
                     gaps_in = 5;
@@ -66,7 +134,7 @@
 
                     active_opacity = 1.0;
                     inactive_opacity = 1.0;
-                    fullscree_opacity = 1.0;
+                    fullscreen_opacity = 1.0;
 
                     drop_shadow = true;
                     shadow_range = 60;
@@ -74,7 +142,7 @@
                     shadow_render_power = 4;
                     "col.shadow" = "rgba(00000099)";
 
-                    blur {
+                    blur = {
                         enabled = true;
                         size = 6;
                         passes = 3;
@@ -83,7 +151,7 @@
                 };
 
                 
-                animations {
+                animations = {
                     enabled = true;
 
                     bezier = [
@@ -110,7 +178,7 @@
                 };
 
                 master = {
-                    new_status = master;
+                    new_status = "master";
                 };
 
                 gestures = {
@@ -124,16 +192,16 @@
                 };
 
                 bind = [
-                    "$mainMod, S, exec, rofi -show drun -show-icons"
-
                     "$mainMod, Q, exec, $terminal"
                     "$mainMod, C, killactive,"
                     "$mainMod, M, exit,"
                     "$mainMod, E, exec, $fileManager"
-                    "$mainMod, V, togglefloating,"
+                    "$mainMod, F, togglefloating,"
                     "$mainMod, R, exec, $menu"
-                    "$mainMod, P, pseudo, # dwindle"
-                    "$mainMod, J, togglesplit, # dwindle"
+                    "$mainMod, P, pseudo,"
+                    "$mainMod, J, togglesplit,"
+
+                    "$mainMod, V, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
 
                     # Move focus with mainMod + arrow keys
                     "$mainMod, left, movefocus, l"
@@ -168,6 +236,8 @@
                     # Scroll through existing workspaces with mainMod + scroll
                     "$mainMod, mouse_down, workspace, e+1"
                     "$mainMod, mouse_up, workspace, e-1"
+
+                    "$mainMod, grave, hyprexpo:expo, toggle"
                 ];
 
                 bindm = [

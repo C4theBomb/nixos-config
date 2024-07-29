@@ -3,7 +3,6 @@
         hyprland.enable = lib.mkEnableOption "enables hyprland";
     };
 
-
     config = lib.mkIf config.hyprland.enable {
         programs.hyprland = {
             enable = true;
@@ -11,9 +10,13 @@
             xwayland.enable = true;
         };
 
+        environment.systemPackages = with pkgs; [ 
+            xdg-desktop-portal-hyprland
+        ];
+
         xdg.portal = {
             enable = true;
-            extraPortals = with pkgs; [ xdg-desktop-portal-hyprland ];
+            extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
         };
 
         environment.sessionVariables = {

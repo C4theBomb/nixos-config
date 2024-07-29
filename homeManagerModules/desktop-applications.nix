@@ -9,7 +9,7 @@
                 commandLineArgs = [ "--enable-features=UseOzonePlatform" "--ozone-platform=wayland" ];
             })
             spotify
-            discord
+            webcord
             slack
             zoom-us
             variety
