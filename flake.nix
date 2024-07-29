@@ -1,17 +1,75 @@
 {
-    description = "A very basic flake";
+    description = "snowflake";
+
+    outputs = inputs: inputs.flake-parts.lib.mkFlake {
+        inherit inputs;
+    } {
+        imports = [
+            inputs.pre-commit-hooks.flakeModule
+            ./hosts
+            ./home/profiles
+        ];
+        systems = ["x86_64-linux"];
+        perSystem = { config, pkgs, ... }: {
+            pre-commit = {
+                check.enable = true;
+                settings = {
+                excludes = ["flake.lock"];
+                    hooks = {
+                        stylua.enable = true;
+                        statix.enable = true;
+                        alejandra.enable = true;
+                        deadnix = {
+                            enable = true;
+                            excludes = ["overlays.nix"];
+                        };
+                        prettier = {
+                            enable = true;
+                            files = "\\.(js|ts|md|json)$";
+                            settings = {
+                                trailing-comma = "none";
+                            };
+                        };
+                    };
+                };
+            };
+            devShells.default = pkgs.mkShell {
+                name = "snowflake";
+                shellHook = config.pre-commit.installationScript;
+                packages = with pkgs; [
+                    git
+                    sops
+                    alejandra
+                    yaml-language-server
+                    lua-language-server
+                ];
+            };
+            formatter = pkgs.alejandra;
+        };
+    };
 
     inputs = {
-        nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+        nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+        flake-parts.url = "github:hercules-ci/flake-parts";
+        pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
+
+        hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+        xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";
+
+        yazi.url = "github:sxyazi/yazi";
+        stylix.url = "github:danth/stylix";
+        eww.url = "github:elkowar/eww";
+        anyrun.url = "github:Kirottu/anyrun";
+        sops-nix = {
+            url = "github:Mic92/sops-nix";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
         home-manager = {
             url = "github:nix-community/home-manager";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-        hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-        hyprland-plugins = {
-            url = "github:hyprwm/hyprland-plugins";
-            inputs.hyprland.follows = "hyprland";
-        };
+        botoh.url = "git+https://git.flake.sh/notohh/botoh";
+
         neovim-config = {
             url = "git+https://github.com/C4theBomb/neovim.git";
             flake = false;
@@ -19,42 +77,6 @@
         dotfiles = {
             url = "git+https://github.com/C4theBomb/dotfiles.git";
             flake = false;
-        };
-    };
-
-    outputs = { self, nixpkgs, home-manager, ... }@inputs:
-    let
-        system = "x86_64-linux";
-        pkgs = nixpkgs.legacyPackages.${system};
-    in
-    {
-        nixosConfigurations = {
-            c4-desktop = nixpkgs.lib.nixosSystem {
-                specialArgs = { inherit inputs; };
-
-                modules = [
-                    ./hosts/desktop/configuration.nix
-                    ./nixosModules
-                ];
-            };
-            iso-graphical = nixpkgs.lib.nixosSystem {
-                specialArgs = { inherit inputs; };
-
-                modules = [
-                    ./hosts/iso-graphical/configuration.nix
-                    ./nixosModules
-                ];
-            };
-        };
-
-        homeConfigurations."c4patino" = home-manager.lib.homeManagerConfiguration {
-            inherit pkgs;
-            extraSpecialArgs = { inherit inputs; };
-
-            modules = [ 
-                ./hosts/home.nix 
-                ./homeManagerModules
-            ];
         };
     };
 }

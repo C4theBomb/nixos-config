@@ -1,16 +1,17 @@
 { lib, ... }: {
     imports = [
-        ./base.nix
-
+        ./anyrun
         ./editors
-        ./shell
+        ./eww
+        ./media
+        ./terminal
 
         ./desktop-applications.nix
         ./languages.nix
-        ./hyprland.nix
+        ./browsers.nix
     ];
 
+    google-chrome.enable = lib.mkDefault true;
     desktop-applications.enable = lib.mkDefault true;
     languages.enable = lib.mkDefault true;
-    hyprland.enable = lib.mkDefault true;
 }

@@ -1,12 +1,16 @@
 { lib, ... }: {
     imports = [
+        ./yazi
+
+        ./bat.nix
+        ./bottom.nix
+        ./gh.nix
         ./git.nix
+        ./kitty.nix
+        ./leetcode.nix
         ./ssh.nix
         ./zoxide.nix
         ./zsh.nix
-        ./gh.nix
-        ./kitty.nix
-        ./leetcode.nix
     ];
 
     git.enable = lib.mkDefault true;

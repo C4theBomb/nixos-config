@@ -5,9 +5,6 @@
 
     config = lib.mkIf config.desktop-applications.enable {
         home.packages = with pkgs; [
-            (google-chrome.override {
-                commandLineArgs = [ "--enable-features=UseOzonePlatform" "--ozone-platform=wayland" ];
-            })
             spotify
             webcord
             slack
