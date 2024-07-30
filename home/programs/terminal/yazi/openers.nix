@@ -3,7 +3,7 @@
         open.rules = [
             {
                 mime = "text/*";
-                use = ["edit" "reveal"];
+                use = ["text" "reveal"];
             }
             {
                 mime = "image/*";
@@ -11,21 +11,37 @@
             }
             {
                 mime = "video/*";
-                use = ["play" "reveal"];
+                use = ["video" "reveal"];
             }
             {
                 mime = "application/json";
-                use = ["edit" "reveal"];
+                use = ["json" "reveal"];
+            }
+            {
+                mime = "application/pdf";
+                use = ["pdf" "reveal"];
             }
             {
                 mime = "*";
-                use = ["edit" "open" "reveal"];
+                use = ["text" "reveal"];
             }
         ];
         opener = {
             text = [
                 {
                     run = ''nvim "$@" '';
+                    for = "linux";
+                }
+            ];
+            json = [
+                {
+                    run = ''jq "$@"'';
+                    for = "linux";
+                }
+            ];
+            pdf = [
+                {
+                    run = ''zathura "$@"'';
                     for = "linux";
                 }
             ];

@@ -97,5 +97,14 @@
 
     programs.zsh.enable = true;
 
+    programs.nix-ld = {
+        enable = true;
+        libraries = with pkgs; [
+            stdenv.cc.cc
+            python312Packages.scipy
+            cudaPackages.cudatoolkit
+        ];
+    };
+
     system.stateVersion = "24.05";
 }

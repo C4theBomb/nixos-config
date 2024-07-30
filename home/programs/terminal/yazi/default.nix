@@ -5,6 +5,13 @@
         ./openers.nix
     ];
 
+    home.packages = with pkgs; [
+        mpv
+        imv
+        jq
+        exiftool
+    ];
+
     programs.yazi = {
         enable = true;
         package = pkgs.yazi;
