@@ -1,7 +1,11 @@
 (deflisten musicArtist :initial "-" "playerctl --follow metadata --format '{{ artist }}'")
 (deflisten musicTitle :initial "-" "playerctl --follow metadata --format '{{title}}'")
-(deflisten musicCover "sh /home/notoh/snowflake/home/programs/eww/config/scripts/get-music-cover.sh /tmp/eww/cache_directory")
+(deflisten musicCover "get-music-cover")
 
+
+(defpoll fulldate :interval "1s"
+    :initial "initial-value"
+`date "+%A - %d %B %Y - %H:%H:%S"`)
 
 (defpoll time :interval "60s"
   :initial "initial-value"

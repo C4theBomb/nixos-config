@@ -9,12 +9,6 @@
                 "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
             ];
 
-            monitor = [
-                "DP-2, 2560x1440@120, 0x0, 1"
-                "DP-1, 2560x1440@120, 2560x0, 1"
-                ", preferred, auto, auto"
-            ];
-
             general = {
                 gaps_in = 5;
                 gaps_out = 20;

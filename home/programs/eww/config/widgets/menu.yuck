@@ -14,8 +14,7 @@
     :spacing 0
     (box :class "menubox-header"
       :orientation "h"
-      (label :halign "start" :text time)
-      (label :halign "end" :text "おかえりなさい！"))
+      (label :halign "start" :text "${fulldate}"))
     (box :class "info-box"
       :orientation "h"
       (circular-progress
@@ -50,13 +49,13 @@
     )
     (box :class "menubox-widgets"
       :orientation "h"
-      (button :class "menubox-widgets text" :onclick "reboot now" "")
+      (button :class "menubox-widgets text" :onclick "reboot" "")
       (button :class "menubox-widgets text" :onclick "shutdown now" "")
       (button :class "menubox-widgets text" :onclick "eww close menu-window" "")))
 )
 
 (defwindow menu-window
-  :monitor 0
+  :monitor 1
   :windowtype "dock"
   :geometry (geometry
     :x "0.9%"

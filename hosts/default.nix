@@ -3,13 +3,13 @@
         inherit (inputs.nixpkgs.lib) nixosSystem;
         specialArgs = { inherit inputs; };
     in {
-        c4-desktop = nixosSystem {
+        arisu = nixosSystem {
             inherit specialArgs;
-            modules = [ ./desktop ];
+            modules = [ ./arisu ];
         };
         iso-graphical = nixosSystem {
             inherit specialArgs;
-            modules = [ ./iso ];
+            modules = [ ./iso-graphical ];
         };
     };
 }

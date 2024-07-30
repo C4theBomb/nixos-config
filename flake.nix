@@ -68,7 +68,6 @@
             url = "github:nix-community/home-manager";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-        botoh.url = "git+https://git.flake.sh/notohh/botoh";
 
         neovim-config = {
             url = "git+https://github.com/C4theBomb/neovim.git";

@@ -3,9 +3,9 @@ let
     extraSpecialArgs = { inherit inputs self; };
 
     homeImports = {
-        desktop = [
+        "c4patino@arisu" = [
             ../.
-            ./desktop
+            ./arisu
         ];
     };
 
@@ -16,8 +16,8 @@ in
 
     flake = {
         homeConfigurations = {
-            "c4-desktop" = inputs.home-manager.lib.homeManagerConfiguration {
-                modules = homeImports.desktop;
+            "c4patino_arisu" = inputs.home-manager.lib.homeManagerConfiguration {
+                modules = homeImports."c4patino@arisu";
                 inherit pkgs extraSpecialArgs;
             };
         };

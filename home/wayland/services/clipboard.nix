@@ -2,6 +2,7 @@
     home.packages = with pkgs; [
         wl-clipboard
         cliphist
+        rofi
     ];
 
     wayland.windowManager.hyprland = {

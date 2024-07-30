@@ -25,7 +25,7 @@
         opener = {
             text = [
                 {
-                    run = ''hx "$@" '';
+                    run = ''nvim "$@" '';
                     for = "linux";
                 }
             ];

@@ -19,22 +19,22 @@ _: {
 
             # Navigation
             {
-                on = ["<Up>"];
+                on = ["k"];
                 run = "arrow -1";
                 desc = "Move cursor up";
             }
             {
-                on = ["<Down>"];
+                on = ["j"];
                 run = "arrow 1";
                 desc = "Move cursor down";
             }
             {
-                on = ["<Left>"];
+                on = ["h"];
                 run = "leave";
                 desc = "Go back to the parent directory";
             }
             {
-                on = ["<Right>"];
+                on = ["l"];
                 run = "enter";
                 desc = "Enter the child directory";
             }
@@ -56,12 +56,12 @@ _: {
                 desc = "Toggle the current selection state";
             }
             {
-                on = ["i"];
+                on = ["v"];
                 run = "visual_mode";
                 desc = "Enter visual mode (selection mode)";
             }
             {
-                on = ["I"];
+                on = ["V"];
                 run = "visual_mode --unset";
                 desc = "Enter visual mode (unset mode)";
             }
@@ -134,12 +134,12 @@ _: {
             }
             {
                 on = ["z"];
-                run = "jump zoxide";
+                run = "plugin zoxide";
                 desc = "jump to a directory using zoxide";
             }
             {
                 on = ["Z"];
-                run = "jump fzf";
+                run = "plugin fzf";
                 desc = "reveal files with fzf";
             }
 
