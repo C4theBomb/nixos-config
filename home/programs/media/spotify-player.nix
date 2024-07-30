@@ -6,7 +6,7 @@
   xdg.configFile."spotify-player/app.toml" = {
     text = ''
       theme = "tokyonight"
-      client_id = "bc629e700c1740a28b3f594ef1942eac"
+      client_id = "d0136e02950c48869f941ab053d5ac11"
       client_port = 8080
       playack_format = "{track} • {artists}\n{album}\n{metadata}"
       notify_format = { summary = "{track} • {artists}", body = "{album}" }
@@ -19,7 +19,7 @@
       enable_media_control = true
       enable_streaming = true
       enable_cover_image_cache = true
-      default_device = "tsuki"
+      default_device = "c4-desktop"
       play_icon = "▶"
       pause_icon = "▌▌"
       liked_icon = "♥"
@@ -30,7 +30,7 @@
       playback_window_width = 6
 
       [device]
-      name = "tsuki"
+      name = "c4-desktop"
       device_type = "computer"
       volume = 100
       bitrate = 320

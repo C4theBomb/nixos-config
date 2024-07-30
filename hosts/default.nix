@@ -5,7 +5,7 @@
     in {
         c4-desktop = nixosSystem {
             inherit specialArgs;
-            modules = [ ./deskop ];
+            modules = [ ./desktop ];
         };
         iso-graphical = nixosSystem {
             inherit specialArgs;

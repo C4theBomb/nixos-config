@@ -2,7 +2,8 @@
     wayland.windowManager.hyprland = {
         settings = {
             exec-once = [
-                "wireplumber"
+                "$terminal"
+                "eww open bar --screen 1"
 
                 "dbus-update-activation-environment --systmd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
                 "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
