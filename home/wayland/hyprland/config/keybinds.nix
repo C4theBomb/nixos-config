@@ -34,10 +34,10 @@
             "ALT SHIFT, S, movetoworkspace, special:magic"
 
             # Window focus
-            "$mainMod, left, movefocus, h"
-            "$mainMod, right, movefocus, l"
-            "$mainMod, up, movefocus, k"
-            "$mainMod, down, movefocus, j"
+            "$mainMod, h, movefocus, left"
+            "$mainMod, l, movefocus, right"
+            "$mainMod, k, movefocus, up"
+            "$mainMod, j, movefocus, down"
 
             # Window position
             "$mainMod SHIFT, h, movewindow, l"

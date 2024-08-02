@@ -30,6 +30,7 @@
             text = [
                 {
                     run = ''nvim "$@" '';
+                    block = true;
                     for = "linux";
                 }
             ];
@@ -48,14 +49,12 @@
             image = [
                 {
                     run = ''imv "$@" '';
-                    block = true;
                     for = "linux";
                 }
             ];
             video = [
                 {
                     run = ''mpv "$@" '';
-                    block = true;
                     for = "linux";
                 }
             ];

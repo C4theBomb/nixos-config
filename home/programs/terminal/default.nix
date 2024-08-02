@@ -4,6 +4,7 @@
 
         ./bat.nix
         ./bottom.nix
+        ./nvtop.nix
         ./gh.nix
         ./git.nix
         ./kitty.nix

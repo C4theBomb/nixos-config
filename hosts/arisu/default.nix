@@ -18,7 +18,7 @@
         };
     };
 
-    networking.hostName = "c4-desktop"; # Define your hostname.
+    networking.hostName = "arisu"; # Define your hostname.
     networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
     # Enable networking
@@ -101,7 +101,6 @@
         enable = true;
         libraries = with pkgs; [
             stdenv.cc.cc
-            python312Packages.scipy
             cudaPackages.cudatoolkit
         ];
     };

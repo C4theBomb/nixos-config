@@ -1,0 +1,13 @@
+{ pkgs, lib, config, ... }: {
+    options = {
+        teamviewer.enable = lib.mkEnableOption "enables teamviewer";
+    };
+
+    config = lib.mkIf config.teamviewer.enable {
+        environment.systemPackages = with pkgs; [
+            teamviewer
+        ];
+
+        services.teamviewer.enable = true;
+    };
+}
