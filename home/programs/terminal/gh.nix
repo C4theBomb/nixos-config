@@ -6,7 +6,7 @@
     config = lib.mkIf config.gh.enable {
         programs.gh = {
             enable = true;
-            extensions = with pkgs; [ github-copilot-cli ];
+            extensions = with pkgs; [ gh-copilot ];
         };
     };
 }

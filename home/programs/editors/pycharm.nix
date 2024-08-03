@@ -5,6 +5,7 @@
 
     config = lib.mkIf config.pycharm.enable {
         home.packages = with pkgs; [ jetbrains.pycharm-professional ];
+
         home.file = {
             ".ideavimrc".source = inputs.dotfiles + "/ideavimrc";
         };

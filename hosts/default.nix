@@ -7,6 +7,10 @@
             inherit specialArgs;
             modules = [ ./arisu ];
         };
+        kokoro = nixosSystem {
+            inherit specialArgs;
+            modules = [ ./kokoro ];
+        };
         iso-graphical = nixosSystem {
             inherit specialArgs;
             modules = [ ./iso-graphical ];
