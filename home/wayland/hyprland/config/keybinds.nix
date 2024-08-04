@@ -15,7 +15,8 @@
             "$mainMod, R, exec, $menu"
             "$mainMod, Q, killactive,"
             "$mainMod ALT, Q, exit,"
-            "$mainMod, F, togglefloating,"
+            "$mainMod, V, togglefloating,"
+            "$mainMod, F, fullscreen,"
             "$mainMod, P, pseudo,"
             "$mainMod, S, togglesplit,"
 
@@ -34,10 +35,10 @@
             "ALT SHIFT, S, movetoworkspace, special:magic"
 
             # Window focus
-            "$mainMod, h, movefocus, left"
-            "$mainMod, l, movefocus, right"
-            "$mainMod, k, movefocus, up"
-            "$mainMod, j, movefocus, down"
+            "$mainMod, h, movefocus, l"
+            "$mainMod, l, movefocus, r"
+            "$mainMod, k, movefocus, u"
+            "$mainMod, j, movefocus, d"
 
             # Window position
             "$mainMod SHIFT, h, movewindow, l"

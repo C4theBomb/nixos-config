@@ -26,7 +26,7 @@
       playback_window_position = "Top"
       cover_img_width = 5
       cover_img_length = 11
-      cover_img_scale = 1.6
+      cover_img_scale = 1
       playback_window_width = 6
 
       [device]
